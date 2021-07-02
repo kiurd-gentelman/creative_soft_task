@@ -39,7 +39,7 @@
             return {
                 drawer: true,
                 items: [
-                    {title: 'Dashboard', icon: 'mdi-account',  link:'/dashboard'},
+                    {title: 'Dashboard', icon: 'mdi-account',  link:'/'},
                     {title: 'Users', icon: 'mdi-account-group-outline' , link:'/user'},
                     {title: 'Task', icon: 'mdi-home-city' , link:'/tasks'},
 
