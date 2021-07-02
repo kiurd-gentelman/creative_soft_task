@@ -15,7 +15,7 @@
                                 <v-text-field
                                     v-model="empForm.name"
                                     :rules="nameRules"
-                                    :counter="15"
+                                    :counter="250"
                                     label="Employee name"
                                     required
                                 ></v-text-field>
@@ -33,11 +33,11 @@
                         </v-row>
                     </v-container>
                     <v-btn
-                        text
-                        color="deep-purple accent-4"
+
+                        color="success"
                         type="submit"
                     >
-                        Learn More
+                        SUBMIT
                     </v-btn>
                 </v-form>
             </v-card-text>
@@ -72,7 +72,7 @@
                 valid: false,
                 nameRules: [
                     v => !!v || 'Name is required',
-                    v => v.length <= 15 || 'Name must be less than 10 characters',
+                    v => v.length <= 250 || 'Name must be less than 10 characters',
                 ],
 
                 emailRules: [

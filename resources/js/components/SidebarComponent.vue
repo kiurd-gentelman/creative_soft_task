@@ -18,15 +18,12 @@
             <v-list dense>
                 <v-list-item
                     v-for="item in items" :key="item.title" link :to=item.link>
-<!--                    <router-link :to=item.link>-->
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-icon>
-
                         <v-list-item-content>
                             <v-list-item-title>{{ item.title }}</v-list-item-title>
                         </v-list-item-content>
-<!--                    </router-link>-->
 
                 </v-list-item>
             </v-list>
@@ -42,9 +39,11 @@
             return {
                 drawer: true,
                 items: [
-                    {title: 'Home', icon: 'mdi-home-city' , link:'/userss'},
-                    {title: 'My Account', icon: 'mdi-account',  link:'/task'},
+                    {title: 'Dashboard', icon: 'mdi-account',  link:'/dashboard'},
                     {title: 'Users', icon: 'mdi-account-group-outline' , link:'/user'},
+                    {title: 'Task', icon: 'mdi-home-city' , link:'/tasks'},
+
+
                 ],
                 mini: false,
             }

@@ -19,19 +19,8 @@
                         {{item.created_at}}
                     </v-list-item-subtitle>
                     <v-list-item-subtitle class="d-flex justify-end">
-                        <v-btn  color="warning"
-                                elevation="1"
-                                small
-                                class="mt-3 ml-3" :to="{ name: 'employee-edit', params: { id: item.id }}">
-                            Edit
-                        </v-btn>
-                        <v-btn
-                            elevation="1"
-                            small
-                            class="mt-3 ml-3"
-                            color="error" >
-                            Edit
-                        </v-btn>
+                        <v-btn  color="warning" elevation="1" small class="mt-3 ml-3" :to="{ name: 'employee-edit', params: { id: item.id }}">Edit</v-btn>
+                        <v-btn elevation="1" small class="mt-3 ml-3" color="error" @click="userDelete(item.id)" >Delete</v-btn>
                     </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
@@ -58,9 +47,10 @@
                     .then(function (response) {
                         // handle success
                         self.employees = response.data
+                        // console.log( response);
                         // console.log( response.data);
+                        // console.log( self.employees);
                         localStorage.setItem('employees', JSON.stringify(self.employees));
-
                         // console.log(result)
                     })
                     .catch(function (error) {
@@ -71,6 +61,22 @@
                         // always executed
                     });
 
+            },
+            async userDelete(id) {
+                // console.log(id)
+                // console.log(this.employees)
+                this.employees = this.employees.filter(function (ele) {
+                    return ele.id != id;
+                });
+                await axios.get('/employee/delete/' + id)
+                    .then(function (response) {
+                        console.log(response);
+                        this.$toaster.success('Employee Updated Successfully')
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                // this.$toaster.success('Employee Updated Successfully')
             }
         },
         mounted(){
