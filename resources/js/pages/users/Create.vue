@@ -22,6 +22,13 @@
                                 <div v-if="empForm.errors.has('name')" v-html="empForm.errors.get('name')" />
                             </v-col>
                             <v-col cols="12" md="6">
+<!--                                <input type="file" @change="onFileChange">-->
+                                <v-file-input
+                                    accept="image/*"
+                                    label="File input" @change="onFileChange"
+                                ></v-file-input>
+                            </v-col>
+                            <v-col cols="12" md="6">
                                 <v-text-field
                                     v-model="empForm.email"
                                     :rules="emailRules"
@@ -48,6 +55,7 @@
 </template>
 <script>
     import Form from 'vform'
+    import { objectToFormData } from 'object-to-formdata'
     export default {
         props:{},
         data(){
@@ -82,19 +90,38 @@
                 empForm: new Form({
                     name: '',
                     email: '',
+                    avatar: '',
                     type: 'employee'
-                })
+                }),
+                input_file :''
             }
         },
         methods:{
             async registration() {
-                const response = await this.empForm.post('/employee/store').then(({ data }) =>{
+                console.log(this.empForm.avatar)
+                const response = await this.empForm.post('/employee/store',
+                    {
+                        transformRequest: [function (data, headers) {
+                            return objectToFormData(data)
+                        }],
+                        onUploadProgress: e => {
+                            // Do whatever you want with the progress event
+                            console.log(e)
+                        }
+                    }
+                ).then(({ data }) =>{
                     this.empForm.name = '';
                     this.empForm.email = '';
                     this.$toaster.success('Registration Created Successfully')
                     console.log(data);
+                    this.$router.push("/user");
                 })
-
+            },
+            onFileChange(event){
+                console.log(event)
+                // this.input_file  = event.target.files[0];
+                this.empForm.avatar  = event;
+                console.log(this.input_file)
             }
         }
     }

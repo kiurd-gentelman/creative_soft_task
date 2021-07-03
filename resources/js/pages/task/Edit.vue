@@ -115,13 +115,9 @@
                 // this.taskForm.employee_id = this.select_employee;
                 console.log(this.taskForm);
                 await this.taskForm.post('/task/update/'+this.task_id).then(({ data }) =>{
-                    // this.taskForm.name = '';
-                    // this.taskForm.employee_id = '';
-                    // this.taskForm.description = '';
-                    // this.taskForm.status = '';
-                    // this.taskForm.type = '';
-                    this.$toaster.success('Registration Created Successfully')
+                    this.$toaster.success('Task Update Successfully')
                     // console.log(data);
+                    this.$router.push("/tasks");
                 })
             },
         },

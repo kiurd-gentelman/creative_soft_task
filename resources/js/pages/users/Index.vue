@@ -11,6 +11,11 @@
         <div  class="mt-3">
             <v-list-item three-line v-for="(item , index) in employees" :key=index >
                 <v-list-item-content >
+                    <v-list-item-title>
+                        <v-avatar size="52">
+                            <img :src=item.avatar alt="John" size="52">
+                        </v-avatar>
+                    </v-list-item-title>
                     <v-list-item-title>{{item.name}}</v-list-item-title>
                     <v-list-item-subtitle>
                         {{item.email}}

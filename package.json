@@ -30,6 +30,7 @@
         "v-toaster": "^1.0.3",
         "vform": "^2.1.0",
         "vue-router": "^3.5.2",
+        "object-to-formdata": "^3.0.9",
         "vuetify": "^2.5.5"
     }
 }

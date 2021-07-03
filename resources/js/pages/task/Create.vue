@@ -115,6 +115,7 @@
                     this.taskForm.select = '';
                     this.$toaster.success('Registration Created Successfully')
                     console.log(data);
+                    this.$router.push("/tasks");
                 })
             },
         },
